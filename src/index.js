@@ -17,6 +17,7 @@ function Escape(text)
 
 async function DistributeAppCenter(token, path, app, mandatory, silent, distributionGroup, releaseNote)
 {
+	console.log(releaseNote);
 	await exec.exec(`appcenter distribute release --token ${token} -f ${path} -a ${app} -n ${github.context.runNumber} ${mandatory} ${silent} ${distributionGroup} ${releaseNote}`);
 }
 
