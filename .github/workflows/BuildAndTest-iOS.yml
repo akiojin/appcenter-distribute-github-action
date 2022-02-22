@@ -40,8 +40,8 @@ jobs:
           silent: false
           group: ${{ env.APPCENTER_DISTRIBUTION_GROUP }}
           release_notes: |
-            - GitHub Actions
+            "- GitHub Actions
               - Action : ${{ github.event_name }}
               - Requester : ${{ github.actor }}
               - Build Number : ${{ github.run_number }}
-              - Commit Message : ${{ github.event.head_commit.message }}
+              - Commit Message : ${{ github.event.head_commit.message }}"
