@@ -34,7 +34,7 @@ jobs:
         uses: ./
         with:
           token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
-          path: ${{ github.repository }}/Unity-Empty-Project.apk
+          path: ${{ github.workspace }}/Unity-Empty-Project.apk
           app: akiojin/Unity-Empty-Project-Android
           mandatory: true
           silent: false

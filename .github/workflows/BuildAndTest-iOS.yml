@@ -34,7 +34,7 @@ jobs:
         uses: ./
         with:
           token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
-          path: ${{ github.repository }}/Unity-Empty-Project.ipa
+          path: ${{ github.workspace }}/Unity-Empty-Project.ipa
           app: akiojin/Unity-Empty-Project-iOS
           mandatory: true
           silent: false
