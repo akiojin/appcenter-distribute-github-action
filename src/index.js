@@ -4,7 +4,7 @@ const exec = require('@actions/exec');
 
 function Escape(text)
 {
-	return '"' + text
+	return '\"' + text
 		.replace(/\\/g, '\\\\')
 		.replace(/'/g, "\\'")
 		.replace(/"/g, '\\"')
