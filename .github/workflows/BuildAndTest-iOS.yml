@@ -27,18 +27,8 @@ jobs:
         with:
           node-version: '17'
 
-      - name: Install dependencies/prepare action
-        run: npm install && npm run prepare
-
-      - name: Check appcenter
-        id: appcenter
-        run: |
-          appcenter -v
-        continue-on-error: true
-      - name: Install appcenter-cli
-        if: ${{ steps.appcenter.outcome == 'failure' }}
-        run: |
-          npm install -g appcenter-cli
+      - name: Install dependencies
+        run: npm install
 
       - name: Distribute ipa to App Center
         uses: ./
