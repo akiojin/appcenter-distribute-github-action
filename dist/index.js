@@ -9801,11 +9801,11 @@ async function Run()
 		if (core.getInput('release_notes') !== '') {
 			args.push('-R')
 
-			const releaseNotes = core.getInput('release_notes');
-			console.log(`RELEASE_NOTES=${releaseNotes}`);
+			core.exportVariable('RELEASE_NOTES', core.getInput('release_notes'));
+			console.log(`RELEASE_NOTES=${process.env.RELEASE_NOTES}`);
 
 			const temp = `${process.env.RUNNER_TEMP}/release_notes.txt`;
-			await exec.exec(`/bin/bash -c "echo \\\"${releaseNotes}\\\" | tee ${temp}"`);
+			await exec.exec(`/bin/bash -c "echo \\\"$RELEASE_NOTES\\\" | tee ${temp}"`);
 
 			args.push(releaseNotes);
 		}
