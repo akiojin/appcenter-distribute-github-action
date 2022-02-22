@@ -9806,7 +9806,7 @@ async function Run()
 			const temp = '$RUNNER_TEMP/release_notes.txt';
 			await exec.exec(`echo $RELEASE_NOTES | tee ${temp}`);
 			args.push(temp);
-			await exec.exec(`ls -la $RUNNER_TEMP`);
+			await exec.exec(`export`);
 		}
 
 		await DistributeAppCenter(args);
