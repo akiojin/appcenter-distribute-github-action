@@ -15,7 +15,7 @@ npm install -g appcenter-cli
 ### Simple usage
 ```yml
 - name: Distribute ipa to App Center
-  uses: akiojin/appcenter-distribute-github-action@v0.1
+  uses: akiojin/appcenter-distribute-github-action@v1.0
   with:
     token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
     path: ${{ runner.temp }}/ProductName.ipa
@@ -25,7 +25,7 @@ npm install -g appcenter-cli
 ### Additional Arguments
 ```yml
 - name: Distribute ipa to App Center
-  uses: akiojin/appcenter-distribute-github-action@v0.1
+  uses: akiojin/appcenter-distribute-github-action@v1.0
   with:
     token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
     path: ${{ runner.temp }}/ProductName.ipa
