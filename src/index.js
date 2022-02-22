@@ -9,7 +9,6 @@ function Escape(text)
 
 async function DistributeAppCenter(args)
 {
-	console.log(args);
 	await exec.exec('appcenter', args);
 }
 
@@ -41,8 +40,9 @@ async function Run()
 		if (core.getInput('release_notes') !== '') {
 			args.push('-R')
 
-			const temp = './release_notes.txt';
-			await exec.exec(`echo ${core.getInput('release_notes')} >> ${temp}`);
+			core.exportVariable('RELEASE_NOTES', core.getInput('release_notes'));
+			const temp = '~/release_notes.txt';
+			await exec.exec(`echo $RELEASE_NOTES >> ${temp}`);
 			args.push(temp);
 		}
 
