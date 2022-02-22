@@ -9799,9 +9799,12 @@ async function Run()
 		}
 
 		if (core.getInput('release_notes') !== '') {
-			args.push('-r')
+			args.push('-R')
 
-			const releaseNotes = core.getInput('release_notes').replace(/\r?\n/g, '\\n').replace(/\n/g, '\n');
+			const releaseNotes = core.getInput('release_notes');
+			const temp = `${process.env.RUNNER_TEMP}/release_notes.txt`;
+			await exec.exec(`/bin/bash -c "echo \"${releaseNotes}\" | tee ${temp}"`);
+
 			console.log(releaseNotes);
 			args.push(releaseNotes);
 		}
