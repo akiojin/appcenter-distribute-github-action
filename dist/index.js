@@ -9801,7 +9801,11 @@ async function Run()
 		if (core.getInput('release_notes') !== '') {
 			args.push('-R')
 
-			core.exportVariable('RELEASE_NOTES', core.getInput('release_notes'));
+			const releaseNotes = core.getInput('release_notes')
+									.replace(/(0x0D)/g, '\r')
+									.replace(/(0x0A)/g, '\n');
+
+			core.exportVariable('RELEASE_NOTES', releaseNotes);
 
 			await exec.exec('printenv');
 
