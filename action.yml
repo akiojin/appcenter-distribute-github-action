@@ -2,7 +2,7 @@ name: 'AppCenter distribute GitHub action'
 description: 'AppCenter distribute GitHub action'
 inputs:
   token:
-    description: 'API token'
+    description: 'API token (App API token or User API token)'
     required: true
     default: ''
   path:

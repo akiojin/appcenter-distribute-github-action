@@ -3,7 +3,7 @@ This action uploads artefacts (.apk or .ipa) to App Center.
 
 ## Usage
 
-### Required
+### Simple usage
 ```yml
 - name: Distribute ipa to App Center
   uses: akiojin/appcenter-distribute-github-action@v0.1
@@ -29,6 +29,39 @@ This action uploads artefacts (.apk or .ipa) to App Center.
 
 ## Additional Arguments
 See [action.yml][1] for more details.
+
+- `token`
+  - **Requied**: true
+  - **Type**: string
+  - **Description**: API token (App API token or User API token)
+- `path`
+  - **Requied**: true
+  - **Type**: string
+  - **Description**: ipa or apk file path
+- `app`
+  - **Requied**: true
+  - **Type**: string
+  - **Description**: Specify app in the <ownerName>/<appName> format
+- `mandatory`
+  - **Requied**: false
+  - **Type**: boolean
+  - **Description**: Make the release mandatory for the testers
+  - **Default**: `false`
+- `silent`
+  - **Requied**: false
+  - **Type**: boolean
+  - **Description**: Do not notify testers of this release
+  - **Default**: `false`
+- `group`
+  - **Requied**: false
+  - **Type**: string
+  - **Description**: Comma-separated distribution group names
+  - **Default**: `""`
+- `release_notes`
+  - **Requied**: false
+  - **Type**: string
+  - **Description**: Release notes text (5000 characters max)
+  - **Default**: `""`
 
 ## License
 Any contributions made under this project will be governed by the [MIT License][2].
