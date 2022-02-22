@@ -4,7 +4,8 @@ const exec = require('@actions/exec');
 
 async function DistributeAppCenter(token, path, app, mandatory, silent, distributionGroup, releaseNote)
 {
-	await exec.exec(`appcenter distribute release publish --token ${token} -f ${path} -a ${app} -n ${github.context.runNumber} ${mandatory} ${silent} ${distributionGroup} ${releaseNote}`);
+	console.log(releaseNote);
+	await exec.exec(`appcenter distribute release --token ${token} -f ${path} -a ${app} -n ${github.context.runNumber} ${mandatory} ${silent} ${distributionGroup} ${releaseNote}`);
 }
 
 async function Run()
@@ -13,7 +14,7 @@ async function Run()
 		const mandatory = core.getBooleanInput('mandatory') ? '--mandatory' : '';
 		const silent = core.getBooleanInput('silent') ? '--silent' : '';
 		const releaseNote = core.getInput('release_notes') !== '' ? '-r \\\"' + core.getInput('release_notes') + '\\\"' : '';
-		const group = core.getInput('group') !== '' ? '-g ' + core.getInput('group') : ''
+		const group = core.getInput('group') !== '' ? `-g ${core.getInput('group')}` : ''
 
 		await DistributeAppCenter(
 			core.getInput('token'),
