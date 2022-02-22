@@ -9765,15 +9765,7 @@ const exec = __nccwpck_require__(2049);
 
 function Escape(text)
 {
-	return `\"\n${text
-		.replace(/'/g, "\\'")
-		.replace(/"/g, '\\"')
-		.replace(/\//g, '\\/')
-		.replace(/</g, '\\x3c')
-		.replace(/>/g, '\\x3e')
-		.replace(/(0x0D)/g, '\r')
-		.replace(/(0x0A)/g, '\n')
-		.replace(/\\/g, '\\')}`;
+	return `${text}`;
 }
 
 async function DistributeAppCenter(args)
