@@ -9803,6 +9803,8 @@ async function Run()
 
 			core.exportVariable('RELEASE_NOTES', core.getInput('release_notes'));
 
+			await exec.exec('printenv');
+
 			const temp = `${process.env.RUNNER_TEMP}/release_notes.txt`;
 			await exec.exec(`/bin/bash -c "echo $RELEASE_NOTES | tee ${temp}"`);
 			args.push(temp);
