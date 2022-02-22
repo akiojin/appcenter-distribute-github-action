@@ -9765,7 +9765,6 @@ const exec = __nccwpck_require__(2049);
 
 async function DistributeAppCenter(token, path, app, mandatory, silent, distributionGroup, releaseNote)
 {
-	console.log(releaseNote);
 	await exec.exec(`appcenter distribute release --token ${token} -f ${path} -a ${app} -n ${github.context.runNumber} ${mandatory} ${silent} ${distributionGroup} ${releaseNote}`);
 }
 
@@ -9774,7 +9773,7 @@ async function Run()
 	try {
 		const mandatory = core.getBooleanInput('mandatory') ? '--mandatory' : '';
 		const silent = core.getBooleanInput('silent') ? '--silent' : '';
-		const releaseNote = core.getInput('release_notes') !== '' ? '-r \\\"' + core.getInput('release_notes') + '\\\"' : '';
+		const releaseNote = core.getInput('release_notes') !== '' ? `-r "${core.getInput('release_notes')}"` : '';
 		const group = core.getInput('group') !== '' ? `-g ${core.getInput('group')}` : ''
 
 		await DistributeAppCenter(
