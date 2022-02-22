@@ -9763,11 +9763,6 @@ const core = __nccwpck_require__(5127)
 const github = __nccwpck_require__(3134)
 const exec = __nccwpck_require__(2049);
 
-function Escape(text)
-{
-	return `${text}`;
-}
-
 async function DistributeAppCenter(args)
 {
 	console.log(args);
@@ -9801,7 +9796,7 @@ async function Run()
 
 		if (core.getInput('release_notes') !== '') {
 			args.push('-r')
-			args.push(Escape(core.getInput('release_notes')));
+			args.push(core.getInput('release_notes') + '\"');
 		}
 
 		await DistributeAppCenter(args);
