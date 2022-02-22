@@ -4,8 +4,7 @@ const exec = require('@actions/exec');
 
 function Escape(text)
 {
-	return `"
-		${text
+	return `\"\n${text
 		.replace(/\\/g, '\\\\')
 		.replace(/'/g, "\\'")
 		.replace(/"/g, '\\"')
@@ -13,8 +12,7 @@ function Escape(text)
 		.replace(/</g, '\\x3c')
 		.replace(/>/g, '\\x3e')
 		.replace(/(0x0D)/g, '\r')
-		.replace(/(0x0A)/g, '\n')}
-		"`;
+		.replace(/(0x0A)/g, '\n')}\"`;
 }
 
 async function DistributeAppCenter(args)
