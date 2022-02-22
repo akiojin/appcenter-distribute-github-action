@@ -41,10 +41,11 @@ async function Run()
 			args.push('-R')
 
 			const releaseNotes = core.getInput('release_notes');
-			const temp = `${process.env.RUNNER_TEMP}/release_notes.txt`;
-			await exec.exec(`/bin/bash -c "echo '${releaseNotes}' | tee ${temp}"`);
+			console.log(`RELEASE_NOTES=${releaseNotes}`);
 
-			console.log(releaseNotes);
+			const temp = `${process.env.RUNNER_TEMP}/release_notes.txt`;
+			await exec.exec(`/bin/bash -c "echo \\\"${releaseNotes}\\\" | tee ${temp}"`);
+
 			args.push(releaseNotes);
 		}
 
