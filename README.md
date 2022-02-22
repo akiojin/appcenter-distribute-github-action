@@ -33,7 +33,7 @@ npm install -g appcenter-cli
     mandatory: true
     silent: false
     group: 'Tests'
-    release_notes: <Release Notes>
+    release_notes: "<Release Notes>"
 ```
 
 ## Additional Arguments
@@ -69,7 +69,7 @@ See [action.yml][1] for more details.
 - `release_notes`
   - **Requied**: false
   - **Type**: string
-  - **Description**: Release notes text (5000 characters max)
+  - **Description**: Release notes text (5000 characters max). Bracketed by double quotation marks. 
   - **Default**: `""`
 
 ## License
