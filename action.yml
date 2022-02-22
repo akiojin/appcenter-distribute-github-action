@@ -1,24 +1,32 @@
 name: 'AppCenter distribute GitHub action'
 description: 'AppCenter distribute GitHub action'
 inputs:
-  appcenter_access_token:
-    description: 'access token'
+  token:
+    description: 'API token'
     required: true
     default: ''
-  artifact_path:
-    description: ''
+  path:
+    description: 'ipa or apk file path'
     required: true
     default: ''
-  app_slug:
-    description: ''
+  app:
+    description: 'Specify app in the <ownerName>/<appName> format'
     required: true
     default: ''
-  distribution_group:
-    description: ''
-    required: true
+  mandatory:
+    description: 'Make the release mandatory for the testers'
+    required: false
+    default: false
+  silent:
+    description: 'Do not notify testers of this release'
+    required: false
+    default: false
+  group:
+    description: 'Comma-separated distribution group names'
+    required: false
     default: ''
-  release_note:
-    description: ''
+  release_notes:
+    description: 'Release notes text (5000 characters max)'
     required: false
     default: ''
 runs:
