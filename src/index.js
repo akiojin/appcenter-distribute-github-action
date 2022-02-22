@@ -40,7 +40,7 @@ async function Run()
 		if (core.getInput('release_notes') !== '') {
 			args.push('-R')
 
-			core.exportVariable('RELEASE_NOTES', core.getInput('release_notes'));
+			core.exportVariable('RELEASE_NOTES', core.getInput('release_notes').replace(/^\"|\"$/g, ""));
 			console.log(`RELEASE_NOTES=${process.env.RELEASE_NOTES}`);
 
 			const temp = `${process.env.RUNNER_TEMP}/release_notes.txt`;
