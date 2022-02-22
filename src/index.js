@@ -38,19 +38,10 @@ async function Run()
 		}
 
 		if (core.getInput('release_notes') !== '') {
-			args.push('-R')
+			args.push('-r')
 
-			const releaseNotes = core.getInput('release_notes')
-									.replace(/(0x0D)/g, '\r')
-									.replace(/(0x0A)/g, '\n');
-
-			core.exportVariable('RELEASE_NOTES', releaseNotes);
-
-			await exec.exec('printenv');
-
-			const temp = `${process.env.RUNNER_TEMP}/release_notes.txt`;
-			await exec.exec(`/bin/bash -c "echo $RELEASE_NOTES | tee ${temp}"`);
-			args.push(temp);
+			const releaseNotes = core.getInput('release_notes').replace(/\r?\n/g, '\\n');
+			args.push(releaseNotes);
 		}
 
 		await DistributeAppCenter(args);
