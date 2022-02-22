@@ -69,7 +69,7 @@ See [action.yml][1] for more details.
 - `release_notes`
   - **Requied**: false
   - **Type**: string
-  - **Description**: Release notes text (5000 characters max). Bracketed by double quotation marks. 
+  - **Description**: Release notes text (markdown supported, 5000 characters max). Bracketed by double quotation marks. 
   - **Default**: `""`
 
 ## License

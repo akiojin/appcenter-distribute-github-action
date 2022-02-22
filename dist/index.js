@@ -9800,8 +9800,11 @@ async function Run()
 		}
 
 		if (core.getInput('release_notes') !== '') {
-			args.push('-r')
-			args.push(Escape(core.getInput('release_notes')));
+			args.push('-R')
+
+			const temp = './release_notes.txt';
+			await exec.exec(`echo ${core.getInput('release_notes')} >> ${temp}`);
+			args.push(temp);
 		}
 
 		await DistributeAppCenter(args);
