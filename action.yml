@@ -1,4 +1,4 @@
-name: 'AppCenter distribute GitHub action
+name: 'AppCenter distribute GitHub action'
 description: 'AppCenter distribute GitHub action'
 inputs:
   appcenter_access_token:
@@ -24,4 +24,3 @@ inputs:
 runs:
   using: 'node16'
   main: 'dist/index.js'
-
