@@ -1,0 +1,27 @@
+name: 'AppCenter distribute GitHub action
+description: 'AppCenter distribute GitHub action'
+inputs:
+  appcenter_access_token:
+    description: 'access token'
+    required: true
+    default: ''
+  artifact_path:
+    description: ''
+    required: true
+    default: ''
+  app_slug:
+    description: ''
+    required: true
+    default: ''
+  distribution_group:
+    description: ''
+    required: true
+    default: ''
+  release_note:
+    description: ''
+    required: false
+    default: ''
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
+
