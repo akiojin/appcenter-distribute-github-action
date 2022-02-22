@@ -42,7 +42,7 @@ async function Run()
 
 			const releaseNotes = core.getInput('release_notes');
 			const temp = `${process.env.RUNNER_TEMP}/release_notes.txt`;
-			await exec.exec(`/bin/bash -c 'echo "${releaseNotes}" | tee ${temp}'`);
+			await exec.exec(`/bin/bash -c "echo '${releaseNotes}' | tee ${temp}"`);
 
 			console.log(releaseNotes);
 			args.push(releaseNotes);
