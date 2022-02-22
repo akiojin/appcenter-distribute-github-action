@@ -9765,7 +9765,7 @@ const exec = __nccwpck_require__(2049);
 
 function Escape(text)
 {
-	return '\"' + text
+	return '\\"' + text
 		.replace(/\\/g, '\\\\')
 		.replace(/'/g, "\\'")
 		.replace(/"/g, '\\"')
