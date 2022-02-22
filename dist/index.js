@@ -9807,7 +9807,7 @@ async function Run()
 			const temp = `${process.env.RUNNER_TEMP}/release_notes.txt`;
 			await exec.exec(`/bin/bash -c "echo \\\"$RELEASE_NOTES\\\" | tee ${temp}"`);
 
-			args.push(releaseNotes);
+			args.push(temp);
 		}
 
 		await DistributeAppCenter(args);
