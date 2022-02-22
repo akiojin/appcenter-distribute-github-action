@@ -1,6 +1,15 @@
 # appcenter-distribute-github-action
 This action uploads artefacts (.apk or .ipa) to App Center.
 
+## Requirement
+You will need to install [appcenter-cli][0]
+
+### Installation
+```sh
+npm install -g appcenter-cli
+```
+
+
 ## Usage
 
 ### Simple usage
@@ -66,5 +75,6 @@ See [action.yml][1] for more details.
 ## License
 Any contributions made under this project will be governed by the [MIT License][2].
 
+[0]: https://github.com/microsoft/appcenter-cli
 [1]: https://github.com/akiojin/appcenter-distribute-github-action/blob/main/action.yml
 [2]: https://github.com/akiojin/appcenter-distribute-github-action/blob/main/LICENSE
