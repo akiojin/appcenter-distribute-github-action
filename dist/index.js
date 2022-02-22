@@ -9801,7 +9801,8 @@ async function Run()
 		if (core.getInput('release_notes') !== '') {
 			args.push('-r')
 
-			const releaseNotes = core.getInput('release_notes').replace(/\r?\n/g, '\\n');
+			const releaseNotes = core.getInput('release_notes').replace(/\r?\n/g, '\\n').replace(/\n/g, '\n');
+			console.log(releaseNotes);
 			args.push(releaseNotes);
 		}
 
