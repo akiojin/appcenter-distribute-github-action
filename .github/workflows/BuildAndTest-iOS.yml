@@ -28,7 +28,7 @@ jobs:
           node-version: '17'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install & npm install -g appcenter-cli
 
       - name: Distribute ipa to App Center
         uses: ./
