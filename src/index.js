@@ -42,12 +42,9 @@ async function Run()
 
 			core.exportVariable('RELEASE_NOTES', core.getInput('release_notes'));
 
-			const temp = '$RUNNER_TEMP/release_notes.txt';
+			const temp = `${process.env.RUNNER_TEMP}/release_notes.txt`;
 			await exec.exec(`/bin/bash -c "echo $RELEASE_NOTES | tee ${temp}"`);
 			args.push(temp);
-			await exec.exec('printenv');
-			await exec.exec('echo RUNNER_TEMP=$RUNNER_TEMP');
-			console.log(`RUNNER_TEMP=${process.env.RUNNER_TEMP}`);
 		}
 
 		await DistributeAppCenter(args);
