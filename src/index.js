@@ -41,7 +41,8 @@ async function Run()
 			args.push('-R')
 
 			core.exportVariable('RELEASE_NOTES', core.getInput('release_notes'));
-			const temp = '~/release_notes.txt';
+
+			const temp = '$RUNNER_TEMP/release_notes.txt';
 			await exec.exec(`echo $RELEASE_NOTES >> ${temp}`);
 			args.push(temp);
 		}
