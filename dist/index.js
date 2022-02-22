@@ -9776,29 +9776,43 @@ function Escape(text)
 		.replace(/(0x0A)/g, '\n')}"`;
 }
 
-async function DistributeAppCenter(token, path, app, mandatory, silent, distributionGroup, releaseNote)
+async function DistributeAppCenter(args)
 {
-	console.log(releaseNote);
-	await exec.exec(`appcenter distribute release --token ${token} -f ${path} -a "${app}" -n ${github.context.runNumber} ${mandatory} ${silent} ${distributionGroup} ${releaseNote}`);
+	console.log(args);
+	await exec.exec('appcenter', args);
 }
 
 async function Run()
 {
 	try {
-		const mandatory = core.getBooleanInput('mandatory') ? '--mandatory' : '';
-		const silent = core.getBooleanInput('silent') ? '--silent' : '';
-		const releaseNote = core.getInput('release_notes') !== '' ? '-r ' + Escape(core.getInput('release_notes')) : '';
-		const group = core.getInput('group') !== '' ? `-g ${core.getInput('group')}` : ''
+		var args = [
+			'distribute',
+			'release',
+			'--token', core.getInput('token'),
+			'-f', core.getInput('path'),
+			'-a', core.getInput('app'),
+			'-n', github.context.runNumber
+		];
 
-		await DistributeAppCenter(
-			core.getInput('token'),
-			core.getInput('path'),
-			core.getInput('app'),
-			mandatory,
-			silent,
-			group,
-			releaseNote
-		);
+		if (core.getBooleanInput('mandatory')) {
+			args.push('--mandatory');
+		}
+
+		if (core.getBooleanInput('silent')) {
+			args.push('--silent');
+		}
+
+		if (core.getInput('group') !== '') {
+			args.push('-g');
+			args.push(core.getInput('group'));
+		}
+
+		if (core.getInput('release_notes') !== '') {
+			args.push('-r')
+			args.push(Escape(core.getInput('release_notes')));
+		}
+
+		await DistributeAppCenter(args);
 	} catch (ex) {
 		core.setFailed(ex.message);
 	}
