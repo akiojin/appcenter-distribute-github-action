@@ -1,0 +1,54 @@
+name: Build & Test [Android]
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+  pull_request:
+    branches:
+      - develop
+      - main
+
+  workflow_dispatch:
+
+env:
+  APPCENTER_DISTRIBUTION_GROUP: Testers
+
+jobs:
+  Build_and_Test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '17'
+
+      - name: Check appcenter
+        id: appcenter
+        run: |
+          appcenter -v
+        continue-on-error: true
+      - name: Install appcenter-cli
+        if: ${{ steps.appcenter.outcome == 'failure' }}
+        run: |
+          npm install -g appcenter-cli
+
+      - name: Distribute apk to App Center
+        uses: akiojin/appcenter-distribute-github-action@v1.0
+        with:
+          token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+          path: ${{ github.repository }}/Unity-Empty-Project.apk
+          app: akiojin/Unity-Empty-Project-Android
+          mandatory: true
+          silent: false
+          group: ${{ env.APPCENTER_DISTRIBUTION_GROUP }}
+          release_notes: |
+            - GitHub Actions
+              - Action : ${{ github.event_name }}
+              - Requester : ${{ github.actor }}
+              - Build Number : ${{ github.run_number }}
+              - Commit Message : ${{ github.event.head_commit.message }}
