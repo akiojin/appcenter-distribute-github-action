@@ -1,16 +1,35 @@
-const core = require('@actions/core')
-const github = require('@actions/github')
-const exec = require('@actions/exec');
+import * as core from '@actions/core';
+import * as github from '@actions/github';
+import * as exec from '@actions/exec';
+import * as fs from 'fs';
+import * as fsPromises from 'fs/promises';
+import { v4 as uuidv4 } from 'uuid';
 
-function Escape(text)
-{
-	return text + '\"';
-}
-
-async function DistributeAppCenter(args)
-{
+var DistributeAppCenter = async function(args) {
 	await exec.exec('appcenter', args);
-}
+};
+
+var GetTemporaryFile = async function(text) {
+	var path = `${process.env.RUNNER_TEMP}/${uuidv4()}`;
+
+	await fsPromises.writeFile(path, text);
+
+	return path;
+};
+
+var GetTemporaryShellScript = async function(text) {
+	var src = await GetTemporaryFile(text);
+	var dst = `${path}.sh`;
+
+	await fsPromises.rename(src, dst);
+	await fsPromises.chmod(dst, fs.constants.R_OK | fs.constants.X_OK);
+
+	return dst;
+};
+
+var TrimQuote = function(text) {
+	return text.replace(/^\"|\"$/g, "");
+};
 
 async function Run()
 {
@@ -38,14 +57,11 @@ async function Run()
 		}
 
 		if (core.getInput('release_notes') !== '') {
+			var releaseNotes = TrimQuote(core.getInput('release_notes'));
+			var path = await GetTemporaryFile(releaseNotes);
+
 			args.push('-R')
-
-			core.exportVariable('RELEASE_NOTES', core.getInput('release_notes').replace(/^\"|\"$/g, ""));
-
-			const temp = `${process.env.RUNNER_TEMP}/release_notes.txt`;
-			await exec.exec(`/bin/bash -c "echo \\\"$RELEASE_NOTES\\\" | tee ${temp}"`);
-
-			args.push(temp);
+			args.push(path);
 		}
 
 		await DistributeAppCenter(args);
