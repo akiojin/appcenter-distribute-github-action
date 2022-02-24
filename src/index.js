@@ -1,30 +1,17 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import * as exec from '@actions/exec';
-import * as fs from 'fs';
 import * as fsPromises from 'fs/promises';
 import { v4 as uuidv4 } from 'uuid';
 
-var DistributeAppCenter = async function(args) {
+var RunAppCenter = async function(args) {
 	await exec.exec('appcenter', args);
 };
 
 var GetTemporaryFile = async function(text) {
 	var path = `${process.env.RUNNER_TEMP}/${uuidv4()}`;
-
 	await fsPromises.writeFile(path, text);
-
 	return path;
-};
-
-var GetTemporaryShellScript = async function(text) {
-	var src = await GetTemporaryFile(text);
-	var dst = `${path}.sh`;
-
-	await fsPromises.rename(src, dst);
-	await fsPromises.chmod(dst, fs.constants.R_OK | fs.constants.X_OK);
-
-	return dst;
 };
 
 var TrimQuote = function(text) {
@@ -38,9 +25,8 @@ async function Run()
 			'distribute',
 			'release',
 			'--token', core.getInput('token'),
-			'-f', core.getInput('path'),
-			'-a', core.getInput('app'),
-			'-n', github.context.runNumber
+			'--file', core.getInput('path'),
+			'--app', core.getInput('app')
 		];
 
 		if (core.getBooleanInput('mandatory')) {
@@ -51,16 +37,23 @@ async function Run()
 			args.push('--silent');
 		}
 
-		if (core.getInput('group') !== '') {
-			args.push('-g');
-			args.push(core.getInput('group'));
+		const group = core.getInput('group');
+		if (group !== '') {
+			args.push('--group');
+			args.push(group);
+		}
+
+		const store = core.getInput('store')
+		if (store !== '') {
+			args.push('--store');
+			args.push(store);
 		}
 
 		if (core.getInput('release_notes') !== '') {
 			var releaseNotes = TrimQuote(core.getInput('release_notes'));
 			var path = await GetTemporaryFile(releaseNotes);
 
-			args.push('-R')
+			args.push('--release-notes-file')
 			args.push(path);
 		}
 

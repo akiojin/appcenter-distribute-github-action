@@ -21,8 +21,12 @@ inputs:
     description: 'Do not notify testers of this release'
     required: false
     default: false
+  store:
+    description: 'Store name. Upload release binary and trigger distribution, at least one of store or group must be specified'
+    required: false
+    default: ''
   group:
-    description: 'Comma-separated distribution group names'
+    description: 'Comma-separated distribution group names. Upload release binary and trigger distribution, at least one of store or group must be specified'
     required: false
     default: ''
   release_notes:

@@ -61,15 +61,20 @@ See [action.yml][1] for more details.
   - **Type**: boolean
   - **Description**: Do not notify testers of this release
   - **Default**: `false`
+- `store`
+  - **Requied**: false
+  - **Type**: string
+  - **Description**: Store name. Upload release binary and trigger distribution, at least one of store or group must be specified.
+  - **Default**: `""`
 - `group`
   - **Requied**: false
   - **Type**: string
-  - **Description**: Comma-separated distribution group names
+  - **Description**: Comma-separated distribution group names. Upload release binary and trigger distribution, at least one of store or group must be specified.
   - **Default**: `""`
 - `release_notes`
   - **Requied**: false
   - **Type**: string
-  - **Description**: Release notes text (markdown supported, 5000 characters max). Bracketed by double quotation marks. 
+  - **Description**: Release notes text (markdown supported, 5000 characters max). Bracketed by double quotation marks
   - **Default**: `""`
 
 ## License
