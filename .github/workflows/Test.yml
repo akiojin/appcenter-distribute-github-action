@@ -1,4 +1,4 @@
-name: Build & Test
+name: Test
 
 on:
   push:
@@ -16,7 +16,7 @@ env:
   APPCENTER_DISTRIBUTION_GROUP: Testers
 
 jobs:
-  Build_and_Test:
+  Test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
