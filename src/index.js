@@ -1,5 +1,6 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
+import * as github from '@actions/github';
 import * as fsPromises from 'fs/promises';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -29,7 +30,8 @@ async function Run()
 			'release',
 			'--token', core.getInput('token'),
 			'--file', core.getInput('path'),
-			'--app', core.getInput('app')
+			'--app', core.getInput('app'),
+			'--build-number', github.context.runNumber
 		];
 
 		if (core.getBooleanInput('mandatory')) {
