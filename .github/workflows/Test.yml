@@ -33,7 +33,7 @@ jobs:
       - name: Install dependencies
         run: npm install & npm install -g appcenter-cli
 
-      - name: Distribute ipa to App Center
+      - name: Distribute ipa or apk to App Center
         uses: ./
         with:
           token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}

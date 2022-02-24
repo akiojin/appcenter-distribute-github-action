@@ -31,7 +31,7 @@ async function Run()
 			'--token', core.getInput('token'),
 			'--file', core.getInput('path'),
 			'--app', core.getInput('app'),
-			'--build-number', github.context.runNumber
+			'--build-number', github.context.runNumber.toString()
 		];
 
 		if (core.getBooleanInput('mandatory')) {
