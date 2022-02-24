@@ -20,8 +20,8 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest ]
-        artifact: [ 'ipa', 'apk' ]
+        os: [ ubuntu-latest, macOS-latest ]
+        target: [ 'iOS', 'Android' ]
 
     steps:
       - uses: actions/checkout@v2
@@ -37,8 +37,8 @@ jobs:
         uses: ./
         with:
           token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
-          path: ${{ github.workspace }}/Unity-Empty-Project.${{ matrix.artifact }}
-          app: akiojin/Unity-Empty-Project-${{ fromJSON('["iOS", "Android"]')[matrix.artifact == 'apk'] }}
+          path: ${{ github.workspace }}/Unity-Empty-Project.${{ fromJSON('["ipa", "apk"]')[matrix.target == 'Android'] }}
+          app: akiojin/Unity-Empty-Project-${{ matrix.target }}-${{ matrix.os }}
           mandatory: true
           silent: false
           group: ${{ env.APPCENTER_DISTRIBUTION_GROUP }}
