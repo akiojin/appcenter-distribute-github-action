@@ -37,7 +37,7 @@ jobs:
         uses: ./
         with:
           token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
-          path: ${{ github.workspace }}/Unity-Empty-Project.${{ fromJSON('["ipa", "apk"]')[matrix.target == 'Android'] }}
+          path: ${{ github.workspace }}/artifacts/Unity-Empty-Project.${{ fromJSON('["ipa", "apk"]')[matrix.target == 'Android'] }}
           app: akiojin/Unity-Empty-Project-${{ matrix.target }}-${{ matrix.os }}
           mandatory: true
           silent: false
