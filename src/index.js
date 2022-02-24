@@ -1,5 +1,4 @@
 import * as core from '@actions/core';
-import * as github from '@actions/github';
 import * as exec from '@actions/exec';
 import * as fsPromises from 'fs/promises';
 import { v4 as uuidv4 } from 'uuid';
