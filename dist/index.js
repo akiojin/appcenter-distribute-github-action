@@ -3640,7 +3640,7 @@ __nccwpck_require__.r(__webpack_exports__);
 // EXTERNAL MODULE: ./node_modules/@actions/core/lib/core.js
 var core = __nccwpck_require__(127);
 // EXTERNAL MODULE: ./node_modules/@actions/exec/lib/exec.js
-var lib_exec = __nccwpck_require__(49);
+var exec = __nccwpck_require__(49);
 ;// CONCATENATED MODULE: external "fs/promises"
 const promises_namespaceObject = require("fs/promises");
 // EXTERNAL MODULE: ./node_modules/uuid/dist/index.js
@@ -3667,6 +3667,11 @@ var RunAppCenter = async function(args) {
 	await exec.exec('appcenter', args);
 };
 
+var DistributeAppCenter = async function(args) {
+	args.unshift('distribute');
+	await RunAppCenter(args);
+};
+
 var GetTemporaryFile = async function(text) {
 	var path = `${process.env.RUNNER_TEMP}/${v4()}`;
 	await promises_namespaceObject.writeFile(path, text);
@@ -3681,7 +3686,6 @@ async function Run()
 {
 	try {
 		var args = [
-			'distribute',
 			'release',
 			'--token', core.getInput('token'),
 			'--file', core.getInput('path'),

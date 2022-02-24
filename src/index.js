@@ -7,6 +7,11 @@ var RunAppCenter = async function(args) {
 	await exec.exec('appcenter', args);
 };
 
+var DistributeAppCenter = async function(args) {
+	args.unshift('distribute');
+	await RunAppCenter(args);
+};
+
 var GetTemporaryFile = async function(text) {
 	var path = `${process.env.RUNNER_TEMP}/${uuidv4()}`;
 	await fsPromises.writeFile(path, text);
@@ -21,7 +26,6 @@ async function Run()
 {
 	try {
 		var args = [
-			'distribute',
 			'release',
 			'--token', core.getInput('token'),
 			'--file', core.getInput('path'),
