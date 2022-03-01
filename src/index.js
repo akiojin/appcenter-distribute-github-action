@@ -26,11 +26,28 @@ var TrimQuote = function(text) {
 async function Run()
 {
 	try {
+		const token = core.getInput('token');
+		const file = core.getInput('path');
+		const app = core.getInput('app');
+
+		if (token === null || token === '') {
+			core.setFailed('token is null');
+			return;
+		}
+		if (file === null || file === '') {
+			core.setFailed('path is null');
+			return;
+		}
+		if (app === null || app === '') {
+			core.setFailed('app is null');
+			return;
+		}
+
 		var args = [
 			'release',
-			'--token', core.getInput('token'),
-			'--file', core.getInput('path'),
-			'--app', core.getInput('app'),
+			'--token', token,
+			'--file', file,
+			'--app', app,
 			'--build-number', github.context.runNumber.toString()
 		];
 
