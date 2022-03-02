@@ -33,8 +33,26 @@ jobs:
       - name: Install dependencies
         run: npm install & npm install -g appcenter-cli
 
-      - name: Distribute ipa or apk to App Center
+      - name: token is null
         uses: ./
+        if: ${{ always() }}
+
+      - name: path is null
+        uses: ./
+        if: ${{ always() }}
+        with:
+          token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+          app: akiojin/Unity-Empty-Project-${{ matrix.target }}-${{ matrix.os }}
+
+      - name: app is null
+        uses: ./
+        if: ${{ always() }}
+        with:
+          token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+          path: ${{ github.workspace }}/artifacts/Unity-Empty-Project.${{ fromJSON('["ipa", "apk"]')[matrix.target == 'Android'] }}
+
+      - uses: ./
+        if: ${{ always() }}
         with:
           token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
           path: ${{ github.workspace }}/artifacts/Unity-Empty-Project.${{ fromJSON('["ipa", "apk"]')[matrix.target == 'Android'] }}
