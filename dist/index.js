@@ -10480,11 +10480,25 @@ var TrimQuote = function(text) {
 async function Run()
 {
 	try {
+		const token = core.getInput('token');
+		const file = core.getInput('path');
+		const app = core.getInput('app');
+
+		if (token === '') {
+			throw new Error('token is null');
+		}
+		if (file === '') {
+			throw new Error('path is null');
+		}
+		if (app === '') {
+			throw new Error('app is null');
+		}
+
 		var args = [
 			'release',
-			'--token', core.getInput('token'),
-			'--file', core.getInput('path'),
-			'--app', core.getInput('app'),
+			'--token', token,
+			'--file', file,
+			'--app', app,
 			'--build-number', github.context.runNumber.toString()
 		];
 

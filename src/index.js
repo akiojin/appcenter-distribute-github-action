@@ -30,17 +30,14 @@ async function Run()
 		const file = core.getInput('path');
 		const app = core.getInput('app');
 
-		if (token === null || token === '') {
-			core.setFailed('token is null');
-			return;
+		if (token === '') {
+			throw new Error('token is null');
 		}
-		if (file === null || file === '') {
-			core.setFailed('path is null');
-			return;
+		if (file === '') {
+			throw new Error('path is null');
 		}
-		if (app === null || app === '') {
-			core.setFailed('app is null');
-			return;
+		if (app === '') {
+			throw new Error('app is null');
 		}
 
 		var args = [
