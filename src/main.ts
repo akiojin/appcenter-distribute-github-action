@@ -7,18 +7,18 @@ import * as tmp from 'tmp'
 async function Run()
 {
 	try {
-		const token: string = core.getInput('token');
-		const file: string = core.getInput('path');
-		const app: string = core.getInput('app');
+		const token: string = core.getInput('token')
+		const file: string = core.getInput('path')
+		const app: string = core.getInput('app')
 
 		if (token === '') {
-			throw new Error('token is null.');
+			throw new Error('token is null.')
 		}
 		if (file === '') {
-			throw new Error('path is null.');
+			throw new Error('path is null.')
 		}
 		if (app === '') {
-			throw new Error('app is null.');
+			throw new Error('app is null.')
 		}
 
 		const args: string[] = [
@@ -38,16 +38,21 @@ async function Run()
 			args.push('--silent')
 		}
 
+		const store: string = core.getInput('store')
 		const group: string = core.getInput('group');
-		if (group !== '') {
-			args.push('--group')
-			args.push(group)
+
+		if (store === '' && group === '') {
+			throw new Error('At least one of store or group must be specified.')
 		}
 
-		const store: string = core.getInput('store')
 		if (store !== '') {
 			args.push('--store')
 			args.push(store)
+		}
+
+		if (group !== '') {
+			args.push('--group')
+			args.push(group)
 		}
 
 		if (core.getInput('release_notes') !== '') {
