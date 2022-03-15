@@ -13,7 +13,6 @@ npm install -g appcenter-cli
 
 
 ## Usage
-
 ### Simple usage
 ```yml
 - name: Distribute ipa to App Center
@@ -41,43 +40,16 @@ npm install -g appcenter-cli
 ## Additional Arguments
 See [action.yml][2] for more details.
 
-- `token`
-  - **Requied**: true
-  - **Type**: string
-  - **Description**: API token (App API token or User API token)
-- `path`
-  - **Requied**: true
-  - **Type**: string
-  - **Description**: ipa or apk file path
-- `app`
-  - **Requied**: true
-  - **Type**: string
-  - **Description**: Specify app in the <ownerName>/<appName> format
-- `mandatory`
-  - **Requied**: false
-  - **Type**: boolean
-  - **Description**: Make the release mandatory for the testers
-  - **Default**: `false`
-- `silent`
-  - **Requied**: false
-  - **Type**: boolean
-  - **Description**: Do not notify testers of this release
-  - **Default**: `false`
-- `store`
-  - **Requied**: false
-  - **Type**: string
-  - **Description**: Store name. Upload release binary and trigger distribution, at least one of store or group must be specified.
-  - **Default**: `""`
-- `group`
-  - **Requied**: false
-  - **Type**: string
-  - **Description**: Comma-separated distribution group names. Upload release binary and trigger distribution, at least one of store or group must be specified.
-  - **Default**: `""`
-- `release_notes`
-  - **Requied**: false
-  - **Type**: string
-  - **Description**: Release notes text (markdown supported, 5000 characters max). Bracketed by double quotation marks
-  - **Default**: `""`
+|Name|Required|Type|Default|Description|
+|:--|:--|:--|:--|:--|
+|`token`|`true`|`string`||API token (App API token or User API token)|
+|`path`|`true`|`string`||ipa or apk file path|
+|`app`|`true`|`string`||Specify app in the <ownerName>/<appName> format|
+|`mandatory`|`false`|`boolean`|`false`|Make the release mandatory for the testers|
+|`silent`|`false`|`boolean`|`false`|Do not notify testers of this release|
+|`store`|`false`|`string`|""|Store name. Upload release binary and trigger distribution, at least one of store or group must be specified.|
+|`group`|`false`|`string`|""|Comma-separated distribution group names. Upload release binary and trigger distribution, at least one of store or group must be specified.|
+|`release_notes`|`false`|`string`|""|Release notes text (markdown supported, 5000 characters max). Bracketed by double quotation marks.|
 
 ## License
 Any contributions made under this project will be governed by the [MIT License][3].
