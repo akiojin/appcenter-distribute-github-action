@@ -4,15 +4,16 @@ inputs:
   token:
     description: 'API token (App API token or User API token)'
     required: true
+  build-numbder:
+    description: 'Build number'
+    required: false
     default: ''
   path:
     description: 'ipa or apk file path'
     required: true
-    default: ''
   app:
     description: 'Specify app in the <ownerName>/<appName> format'
     required: true
-    default: ''
   mandatory:
     description: 'Make the release mandatory for the testers'
     required: false

@@ -44,7 +44,7 @@ See [action.yml][2] for more details.
 |:--|:--|:--|:--|:--|
 |`token`|`true`|`string`||API token (App API token or User API token)|
 |`path`|`true`|`string`||ipa or apk file path|
-|`app`|`true`|`string`||Specify app in the <ownerName>/<appName> format|
+|`app`|`true`|`string`||Specify app in the [ownerName]/[appName] format<br>(e.g. Company/Example)|
 |`mandatory`|`false`|`boolean`|`false`|Make the release mandatory for the testers|
 |`silent`|`false`|`boolean`|`false`|Do not notify testers of this release|
 |`store`|`false`|`string`|""|Store name. Upload release binary and trigger distribution, at least one of store or group must be specified.|

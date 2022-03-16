@@ -1,15 +1,17 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as github from '@actions/github';
+import { CommandBuilder } from '@akiojin/command-builder';
 import * as fs from 'fs/promises';
 import * as tmp from 'tmp'
 
 async function Run()
 {
 	try {
-		const token: string = core.getInput('token')
-		const file: string = core.getInput('path')
-		const app: string = core.getInput('app')
+		const token = core.getInput('token')
+		const file = core.getInput('path')
+		const app = core.getInput('app')
+		const buildNumber = core.getInput('build-number') || github.context.runNumber.toString()
 
 		if (token === '') {
 			throw new Error('token is null.')
@@ -21,50 +23,46 @@ async function Run()
 			throw new Error('app is null.')
 		}
 
-		const args: string[] = [
-			'distribute',
-			'release',
-			'--token', token,
-			'--file', file,
-			'--app', app,
-			'--build-number', github.context.runNumber.toString()
-		];
+		const builder = new CommandBuilder()
+		builder.AddCommand('distribute')
+		builder.AddCommand('release')
+		builder.AddCommand('--token', token)
+		builder.AddCommand('--file', file)
+		builder.AddCommand('--app', app)
+		builder.AddCommand('--build-number', buildNumber)
 
 		if (core.getBooleanInput('mandatory')) {
-			args.push('--mandatory')
+			builder.AddCommand('--mandatory')
 		}
 
 		if (core.getBooleanInput('silent')) {
-			args.push('--silent')
+			builder.AddCommand('--silent')
 		}
 
-		const store: string = core.getInput('store')
-		const group: string = core.getInput('group');
+		const store = core.getInput('store')
+		const group = core.getInput('group');
 
 		if (store === '' && group === '') {
 			throw new Error('At least one of store or group must be specified.')
 		}
 
 		if (store !== '') {
-			args.push('--store')
-			args.push(store)
+			builder.AddCommand('--store', store)
 		}
 
 		if (group !== '') {
-			args.push('--group')
-			args.push(group)
+			builder.AddCommand('--group', group)
 		}
 
 		if (core.getInput('release_notes') !== '') {
-			const text: string = core.getInput('release_notes').replace(/^\"|\"$/g, "")
-			const releaseNotes: tmp.FileResult = tmp.fileSync()
+			const text = core.getInput('release_notes').replace(/^\"|\"$/g, "")
+			const releaseNotes = tmp.fileSync()
 			await fs.writeFile(releaseNotes.name, text)
 
-			args.push('--release-notes-file')
-			args.push(releaseNotes.name)
+			builder.AddCommand('--release-notes-file', releaseNotes.name)
 		}
 
-		await exec.exec('appcenter', args)
+		await exec.exec('appcenter', builder.Build())
 	} catch (ex: any) {
 		core.setFailed(ex.message)
 	}
