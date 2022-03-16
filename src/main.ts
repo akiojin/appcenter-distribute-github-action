@@ -1,7 +1,7 @@
 import * as core from '@actions/core';
 import * as exec from '@actions/exec';
 import * as github from '@actions/github';
-import { CommandBuilder } from '@akiojin/command-builder';
+import { ArgumentBuilder } from '@akiojin/argument-builder';
 import * as fs from 'fs/promises';
 import * as tmp from 'tmp'
 
@@ -23,20 +23,20 @@ async function Run()
 			throw new Error('app is null.')
 		}
 
-		const builder = new CommandBuilder()
-		builder.AddCommand('distribute')
-		builder.AddCommand('release')
-		builder.AddCommand('--token', token)
-		builder.AddCommand('--file', file)
-		builder.AddCommand('--app', app)
-		builder.AddCommand('--build-number', buildNumber)
+		const builder = new ArgumentBuilder()
+		builder.Append('distribute')
+		builder.Append('release')
+		builder.Append('--token', token)
+		builder.Append('--file', file)
+		builder.Append('--app', app)
+		builder.Append('--build-number', buildNumber)
 
 		if (core.getBooleanInput('mandatory')) {
-			builder.AddCommand('--mandatory')
+			builder.Append('--mandatory')
 		}
 
 		if (core.getBooleanInput('silent')) {
-			builder.AddCommand('--silent')
+			builder.Append('--silent')
 		}
 
 		const store = core.getInput('store')
@@ -47,11 +47,11 @@ async function Run()
 		}
 
 		if (store !== '') {
-			builder.AddCommand('--store', store)
+			builder.Append('--store', store)
 		}
 
 		if (group !== '') {
-			builder.AddCommand('--group', group)
+			builder.Append('--group', group)
 		}
 
 		if (core.getInput('release_notes') !== '') {
@@ -59,7 +59,7 @@ async function Run()
 			const releaseNotes = tmp.fileSync()
 			await fs.writeFile(releaseNotes.name, text)
 
-			builder.AddCommand('--release-notes-file', releaseNotes.name)
+			builder.Append('--release-notes-file', releaseNotes.name)
 		}
 
 		await exec.exec('appcenter', builder.Build())
