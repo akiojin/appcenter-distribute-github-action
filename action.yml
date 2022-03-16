@@ -4,7 +4,7 @@ inputs:
   token:
     description: 'API token (App API token or User API token)'
     required: true
-  build-numbder:
+  build-number:
     description: 'Build number'
     required: false
     default: ''

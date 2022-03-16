@@ -29,6 +29,7 @@ npm install -g appcenter-cli
   uses: akiojin/appcenter-distribute-github-action@v1.1
   with:
     token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+	build-number: ${{ github.run_number }}
     path: ${{ runner.temp }}/ProductName.ipa
     app: <ownerName>/<appName>
     mandatory: true

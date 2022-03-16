@@ -54,6 +54,7 @@ jobs:
       - uses: ./
         with:
           token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+          build-number: ${{ github.run_number }}
           path: ${{ github.workspace }}/artifacts/Unity-Empty-Project.${{ fromJSON('["ipa", "apk"]')[matrix.target == 'Android'] }}
           app: akiojin/Unity-Empty-Project-${{ matrix.target }}-${{ matrix.os }}
           mandatory: true
