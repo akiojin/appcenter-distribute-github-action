@@ -48,8 +48,8 @@ jobs:
         with:
           token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
           build-number: ${{ github.run_number }}
-          path: ${{ github.workspace }}/artifacts/Unity-Empty-Project.${{ fromJSON('["ipa", "apk"]')[matrix.target == 'Android'] }}
-          app: akiojin/Unity-Empty-Project-${{ matrix.target }}-${{ matrix.os }}
+          path: ${{ github.workspace }}/artifacts/Build.${{ fromJSON('["ipa", "apk"]')[matrix.target == 'Android'] }}
+          app: akiojin/Unity-2021.3.1f1-${{ matrix.target }}-${{ github.ref_name }}
           mandatory: true
           silent: false
           group: ${{ env.APPCENTER_DISTRIBUTION_GROUP }}
