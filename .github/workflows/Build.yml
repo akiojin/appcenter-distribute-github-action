@@ -21,4 +21,4 @@ jobs:
 
       - name: ncc build
         run: |
-          npx @vercel/ncc build src/index.ts
+          npx @vercel/ncc build src/main.ts
