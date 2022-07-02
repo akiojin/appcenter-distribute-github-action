@@ -31,8 +31,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - name: Install dependencies
-        run: npm install & npm install -g appcenter-cli
+      - run: npm install
 
       - name: ncc build
         run: |
@@ -48,6 +47,22 @@ jobs:
         target: [ 'iOS', 'Android' ]
 
     steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/cache@v3
+        env:
+          cache-name: cache-node-modules
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Install dependencies
+        run: npm install & npm install -g appcenter-cli
+
       - uses: ./
         with:
           token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
