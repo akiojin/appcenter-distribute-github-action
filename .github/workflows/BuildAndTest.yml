@@ -1,33 +1,24 @@
-name: Testing distribute
+name: Build & Testing distribute
 
 on:
   push:
     branches:
-      - develop
       - main
-  pull_request:
-    branches:
-      - develop
-      - main
-
-  workflow_dispatch:
 
 env:
   APPCENTER_DISTRIBUTION_GROUP: 'Testers'
 
 jobs:
-  Test:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, macOS-latest, Windows-latest ]
-        target: [ 'iOS', 'Android' ]
+  Build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '17'
 
       - uses: actions/cache@v3
         env:
@@ -39,10 +30,24 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-            
+
       - name: Install dependencies
         run: npm install & npm install -g appcenter-cli
 
+      - name: ncc build
+        run: |
+          npx @vercel/ncc build src/main.ts
+
+  Test:
+    runs-on: ${{ matrix.os }}
+    needs: Build
+    timeout-minutes: 15
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macOS-latest, Windows-latest ]
+        target: [ 'iOS', 'Android' ]
+
+    steps:
       - uses: ./
         with:
           token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
