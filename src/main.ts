@@ -7,7 +7,7 @@ import * as tmp from 'tmp'
 
 function ReplaceInvalidChars(text: string): string
 {
-    return text.replace(/./g, '_').replace(/#/g, '_')
+    return text.replace(/[.]/g, '_').replace(/#/g, '_')
 }
 
 async function Run()
