@@ -5,9 +5,6 @@ on:
     branches:
       - main
 
-env:
-  APPCENTER_DISTRIBUTION_GROUP: 'Testers'
-
 jobs:
   Build:
     runs-on: ubuntu-latest
@@ -38,24 +35,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      - name: Install dependencies
-        run: |
-          npm install
-          npm install -g appcenter-cli
-
       - uses: ./
         with:
           token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
           build-number: ${{ github.run_number }}
           path: ${{ github.workspace }}/artifacts/Build.${{ fromJSON('["ipa", "apk"]')[matrix.target == 'Android'] }}
-          app: akiojin/Unity-2021.3.1f1-${{ matrix.target }}-${{ github.ref_name }}
+          app: akiojin/Unity.${{ matrix.target }}
           mandatory: true
           silent: false
-          group: ${{ env.APPCENTER_DISTRIBUTION_GROUP }}
+          group: Testers
           release_notes: |
             "# GitHub Actions
             - Action : ${{ github.event_name }}
