@@ -1,6 +1,6 @@
 {
   "name": "appcenter-distribute-github-action",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "This action uploads artefacts (.apk or .ipa) to App Center.",
   "main": "dist/index.js",
   "scripts": {
