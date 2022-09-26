@@ -15296,7 +15296,7 @@ const argument_builder_1 = __nccwpck_require__(2175);
 const fs = __importStar(__nccwpck_require__(3292));
 const tmp = __importStar(__nccwpck_require__(3933));
 function ReplaceInvalidChars(text) {
-    return text.replace('.', '_').replace('#', '_');
+    return text.replace(/./g, '_').replace(/#/g, '_');
 }
 async function Run() {
     try {
