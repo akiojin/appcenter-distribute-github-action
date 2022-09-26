@@ -5,6 +5,11 @@ import { ArgumentBuilder } from '@akiojin/argument-builder';
 import * as fs from 'fs/promises';
 import * as tmp from 'tmp'
 
+function ReplaceInvalidChars(text: string): string
+{
+    return text.replace('.', '_').replace('#', '_')
+}
+
 async function Run()
 {
     try {
@@ -15,7 +20,7 @@ async function Run()
             .Append('release')
             .Append('--token', core.getInput('token'))
             .Append('--file', core.getInput('path'))
-            .Append('--app', core.getInput('app'))
+            .Append('--app', ReplaceInvalidChars(core.getInput('app')))
             .Append('--build-number', buildNumber)
 
         if (!!core.getBooleanInput('mandatory')) {
@@ -31,7 +36,7 @@ async function Run()
         }
 
         if (!!core.getInput('group')) {
-            builder.Append('--group', core.getInput('group'))
+            builder.Append('--group', ReplaceInvalidChars(core.getInput('group')))
         }
 
         if (!!core.getInput('release_notes')) {
