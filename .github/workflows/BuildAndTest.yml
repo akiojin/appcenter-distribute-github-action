@@ -37,7 +37,7 @@ jobs:
         with:
           token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
           build-number: ${{ github.run_number }}
-          path: ${{ github.workspace }}/artifacts/Build.${{ fromJSON('["ipa", "apk"]')[matrix.target == 'Android'] }}
+          path: ${{ github.workspace }}/artifacts/Build.${{ fromJSON('["ipa", "aab"]')[matrix.target == 'Android'] }}
           app: akiojin/Unity_${{ matrix.target }}
           mandatory: true
           silent: false
