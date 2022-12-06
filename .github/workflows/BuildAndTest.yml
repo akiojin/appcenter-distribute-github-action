@@ -36,7 +36,6 @@ jobs:
       - uses: ./
         with:
           token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
-          build-number: ${{ github.run_number }}
           path: ${{ github.workspace }}/artifacts/Build.${{ fromJSON('["ipa", "aab"]')[matrix.target == 'Android'] }}
           app: akiojin/Unity_${{ matrix.target }}
           mandatory: true
@@ -46,5 +45,4 @@ jobs:
             "# GitHub Actions
             - Action : ${{ github.event_name }}
             - Requester : ${{ github.actor }}
-            - Build Number : ${{ github.run_number }}
             - Commit Message : ${{ github.event.head_commit.message }}"
