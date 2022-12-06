@@ -34,7 +34,6 @@ npm install -g appcenter-cli
   uses: akiojin/appcenter-distribute-github-action@v1
   with:
     token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
-    build-number: ${{ github.run_number }}
     path: ${{ runner.temp }}/ProductName.ipa
     app: <ownerName>/<appName>
     mandatory: true
@@ -47,16 +46,16 @@ npm install -g appcenter-cli
 
 See [action.yml][2] for more details.
 
-| Name            | Required | Type      | Default | Description                                                                                                                                 |     |        |        |          |     |                      |
-| --------------- | -------- | --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------- | --- | ------ | ------ | -------- | --- | -------------------- |
-| `token`         | `true`   | `string`  |         | API token (App API token or User API token)                                                                                                 |     |        |        |          |     |                      |
-| `build-number`  | `false`  | `string`  |         | Specify the build number to be set in App Center.                                                                                                 |     | `path` | `true` | `string` |     | ipa or apk file path |
-| `app`           | `true`   | `string`  |         | Specify app in the [ownerName]/[appName] format<br>(e.g. Company/Example)                                                                   |     |        |        |          |     |                      |
-| `mandatory`     | `false`  | `boolean` | `false` | Make the release mandatory for the testers                                                                                                  |     |        |        |          |     |                      |
-| `silent`        | `false`  | `boolean` | `false` | Do not notify testers of this release                                                                                                       |     |        |        |          |     |                      |
-| `store`         | `false`  | `string`  | ""      | Store name. Upload release binary and trigger distribution, at least one of store or group must be specified.                               |     |        |        |          |     |                      |
-| `group`         | `false`  | `string`  | ""      | Comma-separated distribution group names. Upload release binary and trigger distribution, at least one of store or group must be specified. |     |        |        |          |     |                      |
-| `release_notes` | `false`  | `string`  | ""      | Release notes text (markdown supported, 5000 characters max). Bracketed by double quotation marks.                                          |     |        |        |          |     |                      |
+| Name            | Required | Type      | Default | Description                                                                                                                                 |     |     |     |     |     |     |
+| --------------- | -------- | --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------- | --- | --- | --- | --- | --- | --- |
+| `token`         | `true`   | `string`  |         | API token (App API token or User API token)                                                                                                 |     |     |     |     |     |     |
+| `path`          | `true`   | `string`  |         | ipa or apk file path                                                                                                                        |     |     |     |     |     |     |
+| `app`           | `true`   | `string`  |         | Specify app in the [ownerName]/[appName] format<br>(e.g. Company/Example)                                                                   |     |     |     |     |     |     |
+| `mandatory`     | `false`  | `boolean` | `false` | Make the release mandatory for the testers                                                                                                  |     |     |     |     |     |     |
+| `silent`        | `false`  | `boolean` | `false` | Do not notify testers of this release                                                                                                       |     |     |     |     |     |     |
+| `store`         | `false`  | `string`  | ""      | Store name. Upload release binary and trigger distribution, at least one of store or group must be specified.                               |     |     |     |     |     |     |
+| `group`         | `false`  | `string`  | ""      | Comma-separated distribution group names. Upload release binary and trigger distribution, at least one of store or group must be specified. |     |     |     |     |     |     |
+| `release_notes` | `false`  | `string`  | ""      | Release notes text (markdown supported, 5000 characters max). Bracketed by double quotation marks.                                          |     |     |     |     |     |     |
 
 ## License
 

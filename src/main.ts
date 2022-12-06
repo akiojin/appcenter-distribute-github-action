@@ -13,15 +13,12 @@ function ReplaceInvalidChars(text: string): string
 async function Run()
 {
     try {
-        const buildNumber = core.getInput('build-number') || github.context.runNumber.toString()
-
         const builder = new ArgumentBuilder()
             .Append('distribute')
             .Append('release')
             .Append('--token', core.getInput('token'))
             .Append('--file', core.getInput('path'))
             .Append('--app', ReplaceInvalidChars(core.getInput('app')))
-            .Append('--build-number', buildNumber)
 
         if (!!core.getBooleanInput('mandatory')) {
             builder.Append('--mandatory')
