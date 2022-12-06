@@ -27,7 +27,7 @@ npm install -g appcenter-cli
     app: <ownerName>/<appName>
 ```
 
-### Additional Arguments
+### Additional Arguments (1)
 
 ```yml
 - name: Distribute ipa to App Center
@@ -42,7 +42,7 @@ npm install -g appcenter-cli
     release_notes: "<Release Notes>"
 ```
 
-## Additional Arguments
+## Additional Arguments (2)
 
 See [action.yml][2] for more details.
 
@@ -56,6 +56,15 @@ See [action.yml][2] for more details.
 | `store`         | `false`  | `string`  | ""      | Store name. Upload release binary and trigger distribution, at least one of store or group must be specified.                               |     |     |     |     |     |     |
 | `group`         | `false`  | `string`  | ""      | Comma-separated distribution group names. Upload release binary and trigger distribution, at least one of store or group must be specified. |     |     |     |     |     |     |
 | `release_notes` | `false`  | `string`  | ""      | Release notes text (markdown supported, 5000 characters max). Bracketed by double quotation marks.                                          |     |     |     |     |     |     |
+
+## Remarks
+
+![001](001.png)
+
+The build numbers displayed in iOS/Android on the App Center are as follows, respectively.
+
+- iOS: Xcode > General > Identity > `Build`
+- Android: `versionCode` [Set app version information](https://developer.android.com/studio/publish/versioning#appversioning)
 
 ## License
 
