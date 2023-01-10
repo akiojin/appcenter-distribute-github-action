@@ -21,6 +21,7 @@ jobs:
     needs: Build
     timeout-minutes: 15
     strategy:
+      fail-fast: false
       matrix:
         os: [ ubuntu-latest, macOS-latest, Windows-latest ]
         target: [ 'iOS', 'Android' ]
