@@ -16,14 +16,13 @@ jobs:
       - run: npx @vercel/ncc build src/main.ts
 
   Test:
-    runs-on: ${{ matrix.os }}
+    runs-on: macOS-latest
     needs: Build
     timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, macOS-latest, Windows-latest ]
-        target: [ 'iOS', 'Android' ]
+        target: [ 'iOS', 'Android', Windows ]
 
     steps:
       - uses: actions/checkout@v3
@@ -37,7 +36,7 @@ jobs:
       - uses: ./
         with:
           token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
-          path: ${{ github.workspace }}/artifacts/Build.${{ fromJSON('["ipa", "aab"]')[matrix.target == 'Android'] }}
+          path: ${{ github.workspace }}/artifacts/Build.${{ fromJSON('["ipa", "aab", "zip"]')[strategy.job-index] }}
           app: akiojin/Unity_${{ matrix.target }}
           mandatory: true
           silent: false
