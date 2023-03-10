@@ -6,15 +6,14 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     timeout-minutes: 5
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
       - run: npm install
-      - name: ncc build
-        run: |
-          npx @vercel/ncc build src/main.ts
+      - run: npx @vercel/ncc build src/index.ts
 
   Test:
     runs-on: ${{ matrix.os }}
@@ -25,6 +24,7 @@ jobs:
       matrix:
         os: [ ubuntu-latest, macOS-latest, Windows-latest ]
         target: [ 'iOS', 'Android' ]
+
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -32,8 +32,8 @@ jobs:
           node-version: 16
       - name: Install dependencies
         run: |
-          npm install
-          npm install -g appcenter-cli
+          npm i
+          npm i -g appcenter-cli
       - uses: ./
         with:
           token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
