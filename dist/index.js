@@ -15317,14 +15317,19 @@ function ReplaceInvalidChars(text) {
 async function Run() {
     try {
         const buildNumber = core.getInput('build-number') || github.context.runNumber.toString();
+        const path = core.getInput('path');
         const builder = new argument_builder_1.ArgumentBuilder()
             .Append('distribute')
             .Append('release')
             .Append('--token', core.getInput('token'))
-            .Append('--file', core.getInput('path'))
-            .Append('--app', ReplaceInvalidChars(core.getInput('app')))
-            .Append('--build-number', buildNumber)
-            .Append('--build-version', buildNumber);
+            .Append('--file', path)
+            .Append('--app', ReplaceInvalidChars(core.getInput('app')));
+        if (path.endsWith('.pkg') || path.endsWith('.dmg')) {
+            builder.Append('--build-number', buildNumber);
+        }
+        else if (path.endsWith('.zip') || path.endsWith('.msi')) {
+            builder.Append('--build-version', buildNumber);
+        }
         if (!!core.getBooleanInput('mandatory')) {
             builder.Append('--mandatory');
         }
