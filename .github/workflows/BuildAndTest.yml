@@ -22,7 +22,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [ 'iOS', 'Android', Windows ]
+        target: [ iOS, Android, Windows, macOS ]
 
     steps:
       - uses: actions/checkout@v3
@@ -36,7 +36,7 @@ jobs:
       - uses: ./
         with:
           token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
-          path: ${{ github.workspace }}/artifacts/Build.${{ fromJSON('["ipa", "aab", "zip"]')[strategy.job-index] }}
+          path: ${{ github.workspace }}/artifacts/Build.${{ fromJSON('["ipa", "aab", "zip", "app.zip"]')[strategy.job-index] }}
           app: akiojin/Unity_${{ matrix.target }}
           mandatory: true
           silent: false
