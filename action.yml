@@ -4,6 +4,10 @@ inputs:
   token:
     description: 'API token (App API token or User API token)'
     required: true
+  build-number:
+    description: 'Build number'
+    required: false
+    default: ''
   path:
     description: 'ipa or apk file path'
     required: true

@@ -34,6 +34,7 @@ npm install -g appcenter-cli
   uses: akiojin/appcenter-distribute-github-action@v1
   with:
     token: ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+    build-number: ${{ github.run_number }}
     path: ${{ runner.temp }}/ProductName.ipa
     app: <ownerName>/<appName>
     mandatory: true
@@ -49,6 +50,7 @@ See [action.yml][2] for more details.
 | Name            | Required | Type      | Default | Description                                                                                                                                 |
 | --------------- | -------- | --------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | `token`         | `true`   | `string`  |         | API token (App API token or User API token)                                                                                                 |
+| `build-number`  | `false`  | `string`  |         | Specify the build number to be set in App Center. Valid only on macOS.                                                                      |
 | `path`          | `true`   | `string`  |         | ipa or apk file path                                                                                                                        |
 | `app`           | `true`   | `string`  |         | Specify app in the [ownerName]/[appName] format<br>(e.g. Company/Example)                                                                   |
 | `mandatory`     | `false`  | `boolean` | `false` | Make the release mandatory for the testers                                                                                                  |
