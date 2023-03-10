@@ -15323,7 +15323,8 @@ async function Run() {
             .Append('--token', core.getInput('token'))
             .Append('--file', core.getInput('path'))
             .Append('--app', ReplaceInvalidChars(core.getInput('app')))
-            .Append('--build-number', buildNumber);
+            .Append('--build-number', buildNumber)
+            .Append('--build-version', buildNumber);
         if (!!core.getBooleanInput('mandatory')) {
             builder.Append('--mandatory');
         }
