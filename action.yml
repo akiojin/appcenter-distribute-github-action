@@ -1,4 +1,4 @@
-name: 'AppCenter distribute GitHub action'
+name: 'App Center distribute'
 description: 'AppCenter distribute GitHub action'
 inputs:
   token:
