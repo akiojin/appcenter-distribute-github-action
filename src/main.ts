@@ -25,6 +25,7 @@ async function Run()
 
         if (path.endsWith('.pkg') || path.endsWith('.dmg')) {
             builder.Append('--build-number', buildNumber)
+            builder.Append('--build-version', buildNumber)
         } else if (path.endsWith('.zip') || path.endsWith('.msi')) {
             builder.Append('--build-version', buildNumber)
         }
