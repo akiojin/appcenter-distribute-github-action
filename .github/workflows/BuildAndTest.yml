@@ -9,13 +9,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-
       - run: npm install
-
       - run: npx @vercel/ncc build src/main.ts
 
   Test:
@@ -29,11 +26,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-
       - name: Install dependencies
         run: |
           npm i
