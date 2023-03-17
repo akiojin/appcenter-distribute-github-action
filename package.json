@@ -23,7 +23,6 @@
   },
   "homepage": "https://github.com/akiojin/appcenter-distribute-github-action#readme",
   "dependencies": {
-    "@types/tmp": "0.2.3",
     "tmp": "0.2.1"
   },
   "devDependencies": {
@@ -34,6 +33,7 @@
     "@commitlint/cli": "17.4.4",
     "@commitlint/config-conventional": "17.4.4",
     "@types/node": "18.15.3",
+    "@types/tmp": "0.2.3",
     "@vercel/ncc": "0.36.1",
     "husky": "8.0.3",
     "rimraf": "4.4.0",
