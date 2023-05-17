@@ -16,7 +16,7 @@
     "Distribution",
     "CI"
   ],
-  "author": "akiojin",
+  "author": "Akio Jinsenji <akio-jinsenji@cloud-creative-studios.com> (https://github.com/akiojin)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/akiojin/appcenter-distribute-github-action/issues"
