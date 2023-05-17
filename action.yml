@@ -1,23 +1,28 @@
 name: 'Distribution to App Center'
 description: 'AppCenter distribute GitHub action'
 inputs:
-  token:
-    description: 'API token (App API token or User API token)'
+  app:
+    description: 'Specify app in the <ownerName>/<appName> format'
     required: true
   build-number:
     description: 'Build number'
     required: false
     default: ''
-  path:
-    description: 'ipa or apk file path'
-    required: true
-  app:
-    description: 'Specify app in the <ownerName>/<appName> format'
-    required: true
+  group:
+    description: 'Comma-separated distribution group names. Upload release binary and trigger distribution, at least one of store or group must be specified'
+    required: false
+    default: ''
   mandatory:
     description: 'Make the release mandatory for the testers'
     required: false
     default: false
+  path:
+    description: 'ipa or apk file path'
+    required: true
+  release_notes:
+    description: 'Release notes text (5000 characters max)'
+    required: false
+    default: ''
   silent:
     description: 'Do not notify testers of this release'
     required: false
@@ -26,14 +31,9 @@ inputs:
     description: 'Store name. Upload release binary and trigger distribution, at least one of store or group must be specified'
     required: false
     default: ''
-  group:
-    description: 'Comma-separated distribution group names. Upload release binary and trigger distribution, at least one of store or group must be specified'
-    required: false
-    default: ''
-  release_notes:
-    description: 'Release notes text (5000 characters max)'
-    required: false
-    default: ''
+  token:
+    description: 'API token (App API token or User API token)'
+    required: true
 runs:
   using: 'node16'
   main: 'dist/index.js'
