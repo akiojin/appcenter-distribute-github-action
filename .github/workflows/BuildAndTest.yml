@@ -8,6 +8,7 @@ jobs:
     timeout-minutes: 5
 
     steps:
+      - uses: GitHubSecurityLab/actions-permissions/monitor@v1
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -24,6 +25,7 @@ jobs:
         target: [ iOS, Android, Windows, macOS ]
 
     steps:
+      - uses: GitHubSecurityLab/actions-permissions/monitor@v1
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
