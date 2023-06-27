@@ -9,6 +9,11 @@ jobs:
 
     steps:
       - uses: GitHubSecurityLab/actions-permissions/monitor@v1
+      - uses: gitboard-io/gitboard-action@main
+        with:
+          username: akiojin
+          key: ${{ secrets.GITBOARD_KEY }}
+
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
@@ -26,6 +31,11 @@ jobs:
 
     steps:
       - uses: GitHubSecurityLab/actions-permissions/monitor@v1
+      - uses: gitboard-io/gitboard-action@main
+        with:
+          username: akiojin
+          key: ${{ secrets.GITBOARD_KEY }}
+
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:

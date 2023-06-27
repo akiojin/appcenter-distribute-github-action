@@ -16,7 +16,7 @@
     "Distribution",
     "CI"
   ],
-  "author": "akiojin",
+  "author": "Akio Jinsenji <akio-jinsenji@cloud-creative-studios.com> (https://github.com/akiojin)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/akiojin/appcenter-distribute-github-action/issues"
@@ -30,13 +30,13 @@
     "@actions/exec": "1.1.1",
     "@actions/github": "5.1.1",
     "@akiojin/argument-builder": "1.0.0",
-    "@commitlint/cli": "17.6.1",
-    "@commitlint/config-conventional": "17.6.1",
-    "@types/node": "18.16.3",
+    "@commitlint/cli": "17.6.5",
+    "@commitlint/config-conventional": "17.6.5",
+    "@types/node": "20.2.5",
     "@types/tmp": "0.2.3",
     "@vercel/ncc": "0.36.1",
     "husky": "8.0.3",
-    "rimraf": "5.0.0",
+    "rimraf": "5.0.1",
     "typescript": "5.0.4"
   },
   "private": true
