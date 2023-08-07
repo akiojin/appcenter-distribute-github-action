@@ -17,6 +17,8 @@ jobs:
 
       - uses: akiojin/auto-review-github-action@v1
         with:
-          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          openai-api-key: ${{ secrets.AZURE_OPENAI_API_KEY }}
           target: 'ts,yml'
           language: 日本語
+          resource-name: ${{ secrets.AZURE_OPENAI_RESOURCE_NAME }}
+          deployment-id: ${{ secrets.AZURE_OPENAI_DEPLOYMENT_ID }}
