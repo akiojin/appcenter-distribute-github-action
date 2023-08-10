@@ -19,6 +19,4 @@ jobs:
         with:
           target: 'ts,yml'
           language: 日本語
-          openai-api-key: ${{ secrets.AZURE_OPENAI_API_KEY }}
-          resource-name: ${{ secrets.AZURE_OPENAI_RESOURCE_NAME }}
-          deployment-id: ${{ secrets.AZURE_OPENAI_DEPLOYMENT_ID }}
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
