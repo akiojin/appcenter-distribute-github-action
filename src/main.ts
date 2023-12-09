@@ -21,7 +21,7 @@ async function Run()
             .Append('release')
             .Append('--token', core.getInput('token'))
             .Append('--file', path)
-            .Append('--app', ReplaceInvalidChars(core.getInput('app')))
+            .Append('--app', core.getInput('app'))
 
         if (path.endsWith('.pkg') || path.endsWith('.dmg')) {
             builder.Append('--build-number', buildNumber)
