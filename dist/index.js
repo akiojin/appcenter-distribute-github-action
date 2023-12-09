@@ -558,7 +558,7 @@ class OidcClient {
                 .catch(error => {
                 throw new Error(`Failed to get ID Token. \n 
         Error Code : ${error.statusCode}\n 
-        Error Message: ${error.result.message}`);
+        Error Message: ${error.message}`);
             });
             const id_token = (_a = res.result) === null || _a === void 0 ? void 0 : _a.value;
             if (!id_token) {
@@ -15331,7 +15331,7 @@ async function Run() {
             .Append('release')
             .Append('--token', core.getInput('token'))
             .Append('--file', path)
-            .Append('--app', ReplaceInvalidChars(core.getInput('app')));
+            .Append('--app', core.getInput('app'));
         if (path.endsWith('.pkg') || path.endsWith('.dmg')) {
             builder.Append('--build-number', buildNumber);
             builder.Append('--build-version', buildNumber);
