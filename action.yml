@@ -35,7 +35,7 @@ inputs:
     description: 'API token (App API token or User API token)'
     required: true
 runs:
-  using: 'node16'
+  using: 'node20'
   main: 'dist/index.js'
 branding:
   icon: "upload-cloud"
